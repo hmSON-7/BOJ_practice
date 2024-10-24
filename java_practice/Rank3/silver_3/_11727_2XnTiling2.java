@@ -1,3 +1,5 @@
+package silver_3;
+
 import java.util.Scanner;
 
 public class _11727_2XnTiling2 {

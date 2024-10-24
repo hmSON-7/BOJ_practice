@@ -1,3 +1,5 @@
+package silver_3;
+
 import java.util.*;
 
 public class _9095Plus123 {

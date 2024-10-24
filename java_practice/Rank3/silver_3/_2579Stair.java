@@ -1,3 +1,5 @@
+package silver_3;
+
 import java.io.*;
 
 public class _2579Stair {

@@ -1,3 +1,5 @@
+package silver_2;
+
 import java.io.*;
 
 public class _1012Cabbage {

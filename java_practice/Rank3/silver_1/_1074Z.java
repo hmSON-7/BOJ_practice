@@ -1,3 +1,5 @@
+package silver_1;
+
 import java.io.*;
 
 public class _1074Z {
