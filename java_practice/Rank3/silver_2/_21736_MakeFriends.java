@@ -3,7 +3,7 @@ package silver_2;
 import java.io.*;
 import java.util.*;
 
-public class MakeFriends {
+public class _21736_MakeFriends {
     static String[][] campus;
     static boolean[][] visit;
     static int row, col;
