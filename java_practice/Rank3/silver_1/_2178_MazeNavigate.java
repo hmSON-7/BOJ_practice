@@ -28,7 +28,7 @@ class Location {
     }
 }
 
-public class MazeNavigate {
+public class _2178_MazeNavigate {
     static int[][] directions = new int[][]{{1,0}, {0,1}, {-1,0}, {0,-1}};
     static Queue<Location> q = new LinkedList<>();
     static boolean[][] map;

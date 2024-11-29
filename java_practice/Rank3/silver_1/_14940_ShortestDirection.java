@@ -19,7 +19,7 @@ class Point {
     }
 }
 
-public class ShortestDirection {
+public class _14940_ShortestDirection {
     static final int[][] direction = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
     static boolean[][] visit;
     static int[][] table;

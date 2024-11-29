@@ -2,7 +2,7 @@ package silver_1;
 
 import java.io.*;
 
-public class _1074Z {
+public class _1074_Z {
     static int findTarget(int n, int x1, int y1, int x2, int y2, int x, int y, int cnt) {
         if(n == 1) return cnt;
 
