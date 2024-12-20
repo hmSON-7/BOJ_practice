@@ -2,7 +2,7 @@ package silver_3;
 
 import java.io.*;
 
-public class _1003Fibonacci {
+public class _1003_Fibonacci {
     static Integer[][] dp = new Integer[41][2];
 
     static Integer[] fibonacci(int n) {

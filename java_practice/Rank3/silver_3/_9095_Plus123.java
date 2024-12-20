@@ -2,7 +2,7 @@ package silver_3;
 
 import java.util.*;
 
-public class _9095Plus123 {
+public class _9095_Plus123 {
     static int[] dp = new int[12];
 
     public static void main(String[] args) {

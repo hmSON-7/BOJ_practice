@@ -2,7 +2,7 @@ package silver_2;
 
 import java.io.*;
 
-public class _1012Cabbage {
+public class _1012_Cabbage {
     static int[][] dir = {
             {0, -1}, {-1, 0}, {1, 0}, {0, 1}
     };

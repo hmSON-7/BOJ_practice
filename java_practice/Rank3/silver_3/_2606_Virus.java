@@ -2,7 +2,7 @@ package silver_3;
 
 import java.util.*;
 
-public class _2606Virus {
+public class _2606_Virus {
     public static void main(String[] args){
         // 초기 설정
         Scanner sc = new Scanner(System.in);

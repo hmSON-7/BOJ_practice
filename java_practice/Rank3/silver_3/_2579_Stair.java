@@ -2,7 +2,7 @@ package silver_3;
 
 import java.io.*;
 
-public class _2579Stair {
+public class _2579_Stair {
     static int[] arr = null;
     static int[] dp = null;
     public static int calc(int n) {

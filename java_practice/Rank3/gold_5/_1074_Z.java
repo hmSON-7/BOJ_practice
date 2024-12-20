@@ -1,4 +1,4 @@
-package silver_1;
+package gold_5;
 
 import java.io.*;
 

@@ -1,6 +1,8 @@
+package silver_2;
+
 import java.io.*;
 
-public class _18111MineCraft {
+public class _18111_MineCraft {
     public static void main(String[] args) throws IOException{
         // 선언 및 초기화
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
