@@ -23,7 +23,7 @@ public class _9934_CompleteBinaryTree {
         StringBuilder sb = new StringBuilder();
         sb.append(tree[0]).append("\n");
         for(int i=1; i<level; i++) {
-            int start = (int)Math.pow(2, i) - 1;      // 해당 레벨의 시작 인덱스: 2^i - 1
+            int start = (int)Math.pow(2, i) - 1;
             int end = (int)Math.pow(2, i+1) - 1;
             for(int j=start; j<end; j++) {
                 sb.append(tree[j]).append(" ");
