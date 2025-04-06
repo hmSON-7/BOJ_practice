@@ -3,6 +3,7 @@ package gold_4;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class _14622_PrimeNumberGame {
@@ -37,9 +38,9 @@ public class _14622_PrimeNumberGame {
             }
             return;
         }
-        if(op.max3 == -1) op.cnt += 1000;
+        if(op.pq.size() < 3) op.cnt += 1000;
         else {
-            op.cnt += op.max3;
+            op.cnt += op.pq.peek();
         }
     }
 
@@ -58,20 +59,19 @@ public class _14622_PrimeNumberGame {
 
 class Player {
     long cnt;
-    int max1, max2, max3;
+    PriorityQueue<Integer> pq;
 
     public Player() {
         cnt = 0;
-        max1 = -1; max2 = -1; max3 = -1;
+        pq = new PriorityQueue<>();
     }
 
     public void updateMax(int x) {
-        if(x > max1) {
-            max3 = max2; max2 = max1; max1 = x;
-        } else if(x > max2) {
-            max3 = max2; max2 = x;
-        } else if(x > max3) {
-            max3 = x;
+        if(pq.size() < 3) {
+            pq.add(x); return;
+        }
+        if(pq.peek() < x) {
+            pq.poll(); pq.add(x);
         }
     }
 }
