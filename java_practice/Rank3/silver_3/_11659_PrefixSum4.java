@@ -8,32 +8,21 @@ import java.util.StringTokenizer;
 public class _11659_PrefixSum4 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader((new InputStreamReader(System.in)));
-        String[] info = br.readLine().trim().split(" ");
-
-        int n = Integer.parseInt(info[0]);
-        int t = Integer.parseInt(info[1]);
-
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        int[] arr = new int[n];
-        int i = 0, sum = 0;
-        while(st.hasMoreTokens()) {
-            sum += Integer.parseInt(st.nextToken());
-            arr[i++] = sum;
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int q = Integer.parseInt(st.nextToken());
+        int[] dp = new int[n+1]; dp[0] = 0;
+        st = new StringTokenizer(br.readLine());
+        for(int i=1; i<=n; i++) {
+            dp[i] = dp[i-1] + Integer.parseInt(st.nextToken());
         }
-
         StringBuilder sb = new StringBuilder();
-        while(t-- > 0) {
-            st = new StringTokenizer(br.readLine(), " ");
-            int a = Integer.parseInt(st.nextToken()) - 1;
-            int b = Integer.parseInt(st.nextToken()) - 1;
-
-            try {
-                sb.append(arr[b] - arr[a-1]).append("\n");
-            } catch(ArrayIndexOutOfBoundsException e) {
-                sb.append(arr[b]).append("\n");
-            }
+        for(int i=0; i<q; i++) {
+            st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            sb.append(dp[end] - dp[start - 1]).append("\n");
         }
-
         System.out.println(sb);
     }
 }
