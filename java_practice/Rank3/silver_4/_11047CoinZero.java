@@ -4,27 +4,21 @@ import java.util.*;
 import java.io.*;
 
 public class _11047CoinZero {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] info = br.readLine().trim().split(" ");
-        int n = Integer.parseInt(info[0]);
-        int k = Integer.parseInt(info[1]);
-
-        Stack<Integer> list = new Stack<>();
-        for(int i=0; i<n; i++) {
-            int x = Integer.parseInt(br.readLine());
-            if(x > k) break;
-
-            list.push(x);
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int kind = Integer.parseInt(st.nextToken());
+        int total = Integer.parseInt(st.nextToken());
+        int[] arr = new int[kind];
+        for(int i=0; i<kind; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
         }
-
         int cnt = 0;
-        while(k > 0) {
-            int coin = list.pop();
-            cnt += k / coin;
-            k %= coin;
+        for(int i=kind-1; i>=0; i--) {
+            if(arr[i] > total) continue;
+            cnt += total / arr[i];
+            total %= arr[i];
         }
-
         System.out.println(cnt);
     }
 }
