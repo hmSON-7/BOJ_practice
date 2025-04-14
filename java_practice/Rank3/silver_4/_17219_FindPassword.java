@@ -3,7 +3,7 @@ package silver_4;
 import java.util.*;
 import java.io.*;
 
-public class _17219FindPassword {
+public class _17219_FindPassword {
     public static void main(String[] args) throws IOException {
         // 초기 설정
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

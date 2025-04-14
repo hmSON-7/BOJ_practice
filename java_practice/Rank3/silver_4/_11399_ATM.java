@@ -3,7 +3,7 @@ package silver_4;
 import java.util.*;
 import java.io.*;
 
-public class _11399ATM {
+public class _11399_ATM {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
