@@ -3,7 +3,7 @@ package silver_4;
 import java.util.*;
 import java.io.*;
 
-public class _11047CoinZero {
+public class _11047_CoinZero {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
