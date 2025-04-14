@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class _1931_Meetings {
     private static int compareMeetings(int[] a, int[] b) {
@@ -14,9 +15,9 @@ public class _1931_Meetings {
         int times = Integer.parseInt(br.readLine());
         int[][] meets = new int[times][2];
         for(int i=0; i<times; i++) {
-            String[] meetStr = br.readLine().trim().split(" ");
-            meets[i][0] = Integer.parseInt(meetStr[0]);
-            meets[i][1] = Integer.parseInt(meetStr[1]);
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            meets[i][0] = Integer.parseInt(st.nextToken());
+            meets[i][1] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(meets, _1931_Meetings::compareMeetings);
         int end = meets[0][1], cnt = 1;
