@@ -10,10 +10,10 @@
 ## 🏆 Solved.ac  
 
 <div style="display:flex; gap:1rem; align-items:center;">
-  <a href="https://solved.ac/j4821_s">
-    <img src="http://mazassumnida.wtf/api/v2/generate_badge?boj=j4821_s" alt="Solved.ac Profile" />
+  <a href="https://solved.ac/profile/j4821_s" target="_blank" rel="noopener">
+    <img src="https://mazassumnida.wtf/api/v2/generate_badge?boj=j4821_s" alt="Solved.ac Profile" />
   </a>
-  <img src="http://mazandi.herokuapp.com/api?handle=j4821_s&theme=warm&section=streak" alt="Solved.ac Streak" />
+  <img src="https://mazandi.herokuapp.com/api?handle=j4821_s&theme=warm&section=streak" alt="Solved.ac Streak" />
 </div>
 
 ---
