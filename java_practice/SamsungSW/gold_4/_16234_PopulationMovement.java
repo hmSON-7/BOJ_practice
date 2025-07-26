@@ -3,7 +3,7 @@ package gold_4;
 import java.io.*;
 import java.util.*;
 
-class Main {
+public class _16234_PopulationMovement {
     static int n, left, right, dayCnt = 0, total;
     static int[][] map;
     static boolean[][] visited;

@@ -3,7 +3,7 @@ package gold_4;
 import java.io.*;
 import java.util.*;
 
-class Main {
+public class _3190_Snake {
     static int n, appleCnt, cmdCnt;
     static int[] dy = {-1, 0, 1, 0}, dx = {0, 1, 0, -1};
     static char[][] map;
