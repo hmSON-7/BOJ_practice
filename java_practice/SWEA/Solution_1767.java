@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Solution_1767 {
+
     /**
      * SWEA 1767 : 프로세서 연결하기
      * 이미 설치된 각 프로세서 코어와 멕시노스 외부를 잇는 전선을 직선으로 설치. 단, 이미 가장자리에 있는 코어는 연결된 것으로 간주.
