@@ -1,7 +1,10 @@
-import java.io.*;
-import java.util.*;
+package Rank4.gold_4;
 
-public class Main {
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main_1987 {
 	
 	static int r, c, maxCnt = 1;
 	static char[][] map;
