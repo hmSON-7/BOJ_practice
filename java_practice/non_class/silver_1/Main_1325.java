@@ -1,8 +1,15 @@
-import java.io.*;
-import java.util.*;
+package silver_1;
 
-public class Main {
-	
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class Main_1325 {
+
 	static int n, m, maxHacked;
 	static List<List<Integer>> comList = new ArrayList<>();
 	
