@@ -2,14 +2,15 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-	
 	static int r, c, maxCnt = 1;
 	static char[][] map;
 	static int[] dy = {-1, 1, 0, 0}, dx = {0, 0, -1, 1};
-	static boolean[] visited = new boolean[26];
 	
 	public static void main(String[] args) throws Exception {
-		init(); dfs(0, 0, 1);
+		init(); 
+		char start = map[0][0];
+		int bit = 1<<(start - 'A');
+		dfs(0, 0, bit, 1);
 		System.out.println(maxCnt);
 	}
 	
@@ -27,25 +28,23 @@ public class Main {
 		}
 	}
 	
-	public static void dfs(int y, int x, int moveCnt) {
-		char curr = map[y][x];
-		visited[curr - 'A'] = true;
-		boolean moveFlag = false;
+	public static void dfs(int y, int x, int bit, int cnt) {
+		if(cnt > maxCnt) maxCnt = cnt;
 		for(int i=0; i<4; i++) {
-			int newY = y + dy[i];
-			int newX = x + dx[i];
-			if(!isIn(newY, newX)) continue;
-			char next = map[newY][newX];
-			if(visited[next - 'A']) continue;
-			if(!moveFlag) moveFlag = true;
-			dfs(newY, newX, moveCnt+1);
-			visited[next - 'A'] = false;
+			int ny = y + dy[i];
+			int nx = x + dx[i];
+			if(!isIn(ny, nx)) continue;
+			int newMask = 1 << (map[ny][nx] - 'A');
+			if((newMask & bit) == 0) dfs(ny, nx, bit | newMask, cnt+1);
 		}
-		if(!moveFlag && moveCnt > maxCnt) maxCnt = moveCnt;
  	}
+	
+	public static int countBit(int mask) {
+		if(mask == 0) return 0;
+		return mask%2 + countBit(mask/2);
+	}
 	
 	public static boolean isIn(int y, int x) {
 		return y >= 0 && x >= 0 && y < r && x < c;
 	}
-	
 }
