@@ -3,7 +3,7 @@ package Rank4.gold_4;
 import java.io.*;
 import java.util.*;
 
-public class _12851_HideAndSeek_2 {
+public class Main_12851 {
 
     static int[] visited = new int[100_001];
 
