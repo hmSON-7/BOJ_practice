@@ -5,11 +5,15 @@ import java.util.*;
 
 public class Main_12851 {
 
+    // 각 인덱스별 방문한 최소시간 기록
     static int[] visited = new int[100_001];
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+
+        // 시작 지점과 도착 지점
+        // 이미 두 지점의 위치가 같다면 즉시 종료
         int start = Integer.parseInt(st.nextToken());
         int end = Integer.parseInt(st.nextToken());
         if(start == end) {
@@ -19,6 +23,8 @@ public class Main_12851 {
         Arrays.fill(visited, Integer.MAX_VALUE);
         visited[start] = 0;
 
+        // 동일한 시간대에 end 위치로 도착한 경로의 횟수를 기록
+        // BFS를 통해 방문 시간 순서대로 방문 처리
         int endCnt = 0;
         Queue<int[]> q = new ArrayDeque<>();
         q.add(new int[]{start, 0});
