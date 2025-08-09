@@ -1,45 +1,42 @@
 package Rank4.gold_4;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class _12851_HideAndSeek_2 {
-    public static void main(String[] args) throws IOException {
+
+    static int[] visited = new int[100_001];
+
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int su = Integer.parseInt(st.nextToken());
-        int bro = Integer.parseInt(st.nextToken());
-        if(su == bro) bw.write(0 + "\n" + 1);
-        else {
-            int[] visit = new int[100001];
-            Arrays.fill(visit, 100001);
-            visit[su] = 0;
-            Queue<int[]> q = new LinkedList<>();
-            q.add(new int[]{su, 0});
-            int time = 0, cnt = 0;
-            while (!q.isEmpty()) {
-                int[] cur = q.poll();
-                int p = cur[0];
-                int currentTime = cur[1];
-                if(time != 0 && currentTime == time) break;
-                int[] next = new int[]{p+1, p-1, p*2};
-                for(int x : next) {
-                    if(x < 0 || x >= 100001 || currentTime+1 > visit[x]) continue;
-                    if(x == bro) {
-                        time = currentTime + 1;
-                        cnt++;
-                        continue;
-                    }
-                    visit[x] = currentTime + 1;
-                    q.add(new int[]{x, currentTime+1});
-                }
-            }
-            bw.write(time + "\n" + cnt);
+        int start = Integer.parseInt(st.nextToken());
+        int end = Integer.parseInt(st.nextToken());
+        if(start == end) {
+            System.out.println(0 + "\n" + 1);
+            System.exit(0);
         }
-        bw.flush();
+        Arrays.fill(visited, Integer.MAX_VALUE);
+        visited[start] = 0;
+
+        int endCnt = 0;
+        Queue<int[]> q = new ArrayDeque<>();
+        q.add(new int[]{start, 0});
+        while (!q.isEmpty()) {
+            int[] cur = q.poll();
+            int curIdx = cur[0], curTime = cur[1];
+            int[] next = {curIdx-1, curIdx+1, curIdx*2};
+            for(int x : next) {
+                if(x > 100_000 || x < 0 || visited[x] < curTime+1) continue;
+                visited[x] = curTime+1;
+                if(x == end) {
+                    endCnt++;
+                    continue;
+                }
+                q.add(new int[]{x, curTime+1});
+            }
+        }
+        System.out.println(visited[end] + "\n" + endCnt);
     }
+
 }
