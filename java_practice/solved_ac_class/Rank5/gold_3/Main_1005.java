@@ -1,7 +1,14 @@
-import java.io.*;
-import java.util.*;
+package Rank5.gold_3;
 
-public class Main {
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class Main_1005 {
 	
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder sb = new StringBuilder();
@@ -18,7 +25,9 @@ public class Main {
 		while(tc-- > 0) {
 			init();
 			topologicalSort();
+			// 출력값 : 건물 건설이 가능한 시간 + 목표 건물 건설 시간
 			sb.append(dist[target] + cost[target]).append("\n");
+			// 충돌 방지를 위해 매 케이스마다 리스트 초기화
 			list.clear();
 		}
 		System.out.println(sb);
@@ -55,6 +64,7 @@ public class Main {
 	
 	static void topologicalSort() {
 		Queue<Integer> q = new ArrayDeque<>();
+		// 선행 건설 조건이 없는 건물들부터 건설
 		for(int i=0; i<n; i++) {
 			if(prevCnt[i] == 0) q.add(i);
 		}
@@ -62,8 +72,14 @@ public class Main {
 		while(!q.isEmpty()) {
 			int cur = q.poll();
 			for(int next : list.get(cur)) {
+				// 선행 조건 완료 디카운트
+				// 추가로 같은 레벨의 건물을 동시에 건설 시작했다고 가정하고, 가장 오래 걸린 케이스를 등록해둬야 함
 				prevCnt[next]--;
 				dist[next] = Math.max(dist[next], dist[cur] + cost[cur]);
+				
+				// 만약 선제 조건을 모두 완료한 경우
+				// 목표 건물 건설이 가능하면 즉시 정렬 종료
+				// 아니라면 큐에 다음 건물 삽입
 				if(prevCnt[next] == 0) {
 					if(next == target) return;
 					q.add(next);
@@ -71,5 +87,5 @@ public class Main {
 			}
 		}
 	}
-	
+
 }
