@@ -1,7 +1,9 @@
-import java.io.*;
-import java.util.*;
+package silver_1;
 
-public class Main {
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main_1992 {
 	
 	static int n;
 	static boolean[][] map;
