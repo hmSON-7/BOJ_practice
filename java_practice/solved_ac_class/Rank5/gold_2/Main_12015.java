@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 
 public class Main_12015 {
 	
-static int[] memo;
+	static int[] memo;
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
