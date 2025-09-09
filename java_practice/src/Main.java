@@ -2,44 +2,5 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    
-	static int n;
-	static int[] map;
-	static int[][][] dp;
-	
-	public static void main(String[] args) throws Exception {
-		init();
-		
-		for(int i=1; i<=n; i++) {
-			for(int j=2; j<n; j++) {
-				if((map[i] & 1<<j) != 0) continue;
-				dp[i][j][0] = dp[i][j-1][0] + dp[i][j-1][1];
-				if((map[i] & 1<<(j-1)) == 0 && (map[i-1] & 1<<j) == 0)
-				dp[i][j][1] = dp[i-1][j-1][0] + dp[i-1][j-1][1] + dp[i-1][j-1][2];
-				dp[i][j][2] = dp[i-1][j][1] + dp[i-1][j][2];
-			}
-		}
-		int sum = dp[n][n-1][0] + dp[n][n-1][1] + dp[n][n-1][2];
-		
-		System.out.println(sum);
-	}
-	
-	static void init() throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		n = Integer.parseInt(br.readLine());
-		map = new int[n+1];
-		dp = new int[n+1][n][3];
-		for(int i=1; i<=n; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			for(int j=0; j<n; j++) {
-				int x = Integer.parseInt(st.nextToken());
-				if(x == 1) {
-					map[i] |= 1<<j;
-				}
-			}
-		}
-		
-		dp[1][0][0] = dp[1][1][0] = 1;
-	}
 	
 }
