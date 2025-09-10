@@ -1,8 +1,15 @@
-import java.io.*;
-import java.util.*;
+package gold_3;
 
-public class Main {
-	
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
+
+import Main.Shark;
+
+public class Main_16236 {
+
 	// 맵 크기, 상어 크기, 이동 횟수, 현재 크기일 때 먹은 물고기 수
 	static int n, size = 2, move = 0, eatCount = 0;
 	// 매 턴의 상어 초기 위치
