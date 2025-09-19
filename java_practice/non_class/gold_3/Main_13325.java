@@ -1,7 +1,10 @@
-import java.io.*;
-import java.util.*;
+package gold_3;
 
-public class Main {
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main_13325 {
 	
 	static int level, n, sum;
 	static int[] arr, dp;
