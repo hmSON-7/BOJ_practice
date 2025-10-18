@@ -1,4 +1,4 @@
-package gold_2;
+package gold_1;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 
 public class Main_23059 {
 	
-	// BOJ_23059 : 리그 오브 레게노(Gold_2)
+	// BOJ_23059 : 리그 오브 레게노(Gold_1)
 	// 자료구조 및 알고리즘 : 위상 정렬, 해시맵
 	
 	static StringBuilder sb = new StringBuilder();
