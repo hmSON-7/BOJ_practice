@@ -48,6 +48,7 @@ public class Main_9370 {
 		e = Integer.parseInt(st.nextToken());
 		targetCnt = Integer.parseInt(st.nextToken());
 		dist = new int[v];
+		// 최단거리 초기화
 		Arrays.fill(dist, Integer.MAX_VALUE);
 		candidates = new int[targetCnt];
 		list = new ArrayList[v];
@@ -64,26 +65,39 @@ public class Main_9370 {
 			st = new StringTokenizer(br.readLine());
 			int from = Integer.parseInt(st.nextToken()) - 1;
 			int to = Integer.parseInt(st.nextToken()) - 1;
+			
+			// 일반 경로와, 반드시 지나야 하는 경로를 구분할 필요가 있었음
+			// 따라서 모든 경로에 2를 곱한 뒤, 특정 경로만 1을 빼 짝수/홀수로 경로를 구분한다.
+			// 일반 경로 : 짝수
+			// 반드시 지나야 하는 경로 : 홀수
 			int cost = Integer.parseInt(st.nextToken()) * 2;
+			
+			// 만약 반드시 지나야 하는 두 정점이 모두 주어지면 홀수로 변경
 			if((from == v1 && to == v2) || (from == v2 && to == v1)) cost--;
 			
+			// 양방향 인접리스트
 			list[from].add(new Node(to, cost));
 			list[to].add(new Node(from, cost));
 		}
 		
+		// 도착 위치 후보군 목록
 		for(int i=0; i<targetCnt; i++) {
 			candidates[i] = Integer.parseInt(br.readLine()) - 1;
 		}
+		// 출력시 오름차순으로 출력해야 하므로 미리 정렬해두기
+		// 최대 12이므로 시간을 크게 소모하지 않음
 		Arrays.sort(candidates);
 	}
 	
 	static void dijkstra() {
-		PriorityQueue<Node> q = new PriorityQueue<>(Comparator.comparingLong(a -> a.cost));
+		// 정렬 기준 : 현재까지 이동한 거리 오름차순
+		PriorityQueue<Node> q = new PriorityQueue<>(Comparator.comparingInt(a -> a.cost));
 		q.add(new Node(start, 0));
 		dist[start] = 0;
 		
 		while(!q.isEmpty()) {
 			Node cur = q.poll();
+			// 이미 더 짧은 경로로 도착했던 경우 더 탐색하지 않음
 			if(dist[cur.to] < cur.cost) continue;
 			
 			for(Node next : list[cur.to]) {
@@ -101,6 +115,9 @@ public class Main_9370 {
 		while(tc-- > 0) {
 			init();
 			dijkstra();
+			
+			// 도착 위치 후보군 중 반드시 지나야 하는 경로를 지났는지 확인
+			// 해당 위치로 이동이 가능하면서, 이동거리가 홀수인 경우 해당 경로를 지난 것임
 			for(int c : candidates) {
 				if(dist[c] != Integer.MAX_VALUE && dist[c] % 2 == 1) sb.append((c+1) + " ");
 			}
