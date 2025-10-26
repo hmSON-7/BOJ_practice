@@ -7,6 +7,8 @@ public class Main_1205 {
 	
 	// BOJ_1205 : 등수 구하기(Silver_4)
 	// 자료구조 및 알고리즘 : 구현
+	// 현재 랭킹에 등록된 유저들의 점수(비오름차순), 내 점수, 랭킹에 등록 가능한 최대 유저 수가 주어진다.
+	// 현재 랭킹에서 내 점수를 추가할 수 있는지, 된다면 몇 위인지 구해야 한다.
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
