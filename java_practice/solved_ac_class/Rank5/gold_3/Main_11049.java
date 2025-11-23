@@ -1,4 +1,4 @@
-package gold_3;
+package Rank5.gold_3;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
