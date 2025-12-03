@@ -51,7 +51,6 @@ public class Main_5427 {
 		
 		map = new char[r][c];
 		fireSpread = new int[r][c];
-		fire.clear(); // 여러 테스트 케이스를 돌므로 큐 초기화 필수
 		
 		for(int i=0; i<r; i++) {
 			String line = br.readLine();
