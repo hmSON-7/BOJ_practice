@@ -2,7 +2,7 @@ package gold_4;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -10,7 +10,7 @@ public class Main_2636 {
 	
 	/*
 	 * BOJ_2636 : 치즈 (Gold_4)
-	 * 자료구조 및 알고리즘 : BFS (너비 우선 탐색), 시뮬레이션
+	 * 자료구조 및 알고리즘 : BFS, 시뮬레이션
 	 *
 	 * [문제 요약]
 	 * - 사각형 판 위에 치즈가 놓여 있다. 치즈에는 구멍이 있을 수 있다.
@@ -48,8 +48,8 @@ public class Main_2636 {
 		
 		board = new boolean[r][c];
 		visited = new boolean[r][c];
-		airQ = new LinkedList<>();
-		meltQ = new LinkedList<>();
+		airQ = new ArrayDeque<>();
+		meltQ = new ArrayDeque<>();
 		
 		for(int i=0; i<r; i++) {
 			st = new StringTokenizer(br.readLine());
