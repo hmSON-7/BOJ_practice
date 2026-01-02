@@ -16,6 +16,20 @@ local.properties
 .classpath
 .project
 
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+### Gradle (혹시 사용하신다면 추가 추천) ###
+.gradle/
+build/
+
+### Maven (혹시 사용하신다면 추가 추천) ###
+target/
+
 # External tool builders
 .externalToolBuilders/
 

@@ -6,8 +6,6 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-import Main.Node;
-
 public class Main_1743 {
 	
 	static int r, c, trash;
