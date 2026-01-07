@@ -25,8 +25,14 @@ public class _16919_Bomberman2 {
         }
 
         if(t%2 == 0) {
+            StringBuilder sbRow = new StringBuilder();
+            for (int j = 0; j < w; j++) {
+                sbRow.append('O');
+            }
+            String fullBombRow = sbRow.toString();
+
             for(int i=0; i<h; i++) {
-                sb.append("O".repeat(w));
+                sb.append(fullBombRow);
                 sb.append('\n');
             }
         } else {

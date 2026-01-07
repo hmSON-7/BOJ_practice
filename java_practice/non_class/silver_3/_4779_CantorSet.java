@@ -22,7 +22,14 @@ public class _4779_CantorSet {
         if (n == 0) return "-";
         if (dp[n] != null) return dp[n];
         String prev = cantor(n - 1);
-        String spaces = " ".repeat(prev.length());
+
+        StringBuilder spaceSb = new StringBuilder();
+        int len = prev.length();
+        for (int i = 0; i < len; i++) {
+            spaceSb.append(" ");
+        }
+        String spaces = spaceSb.toString();
+
         dp[n] = prev + spaces + prev;
         return dp[n];
     }

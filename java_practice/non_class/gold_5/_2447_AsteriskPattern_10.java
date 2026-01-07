@@ -24,7 +24,13 @@ public class _2447_AsteriskPattern_10 {
         for(int i=0; i<n/3; i++) {
             pattern[idx++] = prev[i] + prev[i] + prev[i];
         }
-        String space = " ".repeat(n/3);
+
+        StringBuilder sbSpace = new StringBuilder();
+        for (int i = 0; i < n / 3; i++) {
+            sbSpace.append(" ");
+        }
+        String space = sbSpace.toString();
+
         for(int i=0; i<n/3; i++) {
             pattern[idx++] = prev[i] + space + prev[i];
         }

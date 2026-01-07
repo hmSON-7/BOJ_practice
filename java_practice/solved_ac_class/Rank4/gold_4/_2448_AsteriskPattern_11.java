@@ -28,7 +28,13 @@ public class _2448_AsteriskPattern_11 {
         for(int i=mid; i<bot; i++) {
             stars[i] = stars[i-mid] + " " + stars[i-mid];
         }
-        String space = " ".repeat(mid);
+
+        StringBuilder sbSpace = new StringBuilder();
+        for (int k = 0; k < mid; k++) {
+            sbSpace.append(" ");
+        }
+        String space = sbSpace.toString();
+
         for(int i=0; i<mid; i++) {
             stars[i] = space + stars[i] + space;
         }
