@@ -6,7 +6,7 @@ import java.util.*;
 public class Main_5021 {
 
     /*
-     * BOJ_5021 : 왕위 계승(Gold_4)
+     * BOJ_5021 : 왕위 계승(Gold_3)
      * 자료구조 및 알고리즘 : 위상 정렬(Topological Sort), 해시맵(HashMap)
      *
      * [문제 요약]
