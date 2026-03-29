@@ -6,7 +6,7 @@ import java.util.*;
 public class Main_14427 {
 
     /*
-     * BOJ_14427 : 수열과 쿼리 15 (Gold_1)
+     * BOJ_14427 : 수열과 쿼리 15 (Gold_3)
      * 자료구조 및 알고리즘 : 세그먼트 트리
      *
      * [문제 요약]
