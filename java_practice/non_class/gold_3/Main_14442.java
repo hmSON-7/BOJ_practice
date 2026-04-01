@@ -1,56 +1,57 @@
 package gold_3;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main_14442 {
-	
+
 	/*
-	 * BOJ_14442 : 벽 부수고 이동하기 2(Gold_3)
-	 * 자료구조 및 알고리즘 : BFS
-	 * 
-	 * (0, 0)부터 (r-1, c-1)까지의 최단 거리를 구해야 한다. 시작점과 도착점도 거리에 포함된다.
-	 * 벽이 있는 곳으로는 이동할 수 없으나, 최대 K번까지는 벽을 부수고 이동할 수 있다.
-	 * 도착할 수 있는 경우 최단거리를 , 그렇지 않은 경우 -1을 출력한다.
-	 * 
-	 * 3차원 boolean 타입 배열이 필요할 것으로 보인다. 
-	 * 같은 좌표더라도 벽을 몇 번 부순 뒤 이동했는지에 대해 구분해줄 필요가 있어 보인다.
-	 * K의 최대값이 10밖에 안되므로, 3차원 boolean 배열 대신 2차원 int 배열과 비트마스킹으로 대체한다.
+	 * BOJ_14442 : 벽 부수고 이동하기 2 (Gold_3)
+	 * 자료구조 및 알고리즘 : BFS, 비트마스킹
+	 *
+	 * [문제 요약]
+	 * - R×C 격자에서 (0,0)에서 (R-1,C-1)까지 최단 거리로 이동해야 한다.
+	 * - 빈 칸은 그대로 이동 가능하고, 벽은 최대 K개까지 부술 수 있다.
+	 * - 목적지까지 이동하는 최단 거리를 출력하고, 불가능하면 -1을 출력한다.
+	 *
+	 * [핵심 아이디어]
+	 * - 최단 거리 문제이므로 기본적으로 BFS를 사용한다.
+	 * - 다만 같은 칸이라도 "지금까지 몇 개의 벽을 부쉈는지"에 따라 이후 가능한 경로가 달라진다.
+	 * - 따라서 상태를 (y, x, breakCnt)로 확장해서 방문 처리를 해야 한다.
+	 * - 보통은 visited[y][x][k+1] 형태의 3차원 배열을 쓰지만,
+	 *   이 코드는 visited[y][x]의 각 비트를 "벽을 b개 부순 상태로 방문했는지"로 관리해
+	 *   2차원 int 배열 + 비트마스킹으로 압축했다.
+	 *
+	 * [구현 메모]
+	 * - map[y][x] = true 이면 벽(1), false 이면 빈 칸(0)
+	 * - 큐 원소:
+	 *   {y, x, 현재까지 이동 거리, 지금까지 부순 벽 개수}
+	 * - 다음 칸이 벽이면 breakCnt를 1 증가시켜 이동 여부를 판단한다.
+	 * - visited[y][x]의 b번째 비트가 켜져 있으면,
+	 *   해당 칸에 "벽을 b개 부순 상태"로 이미 방문한 적이 있다는 뜻이다.
+	 * - 목적지는 BFS 특성상 처음 도달한 순간이 최단 거리이므로 즉시 반환한다.
+	 * - 시작점과 도착점이 같은 1×1 격자는 별도로 1을 출력한다.
+	 *
+	 * [시간 복잡도]
+	 * - 상태 수는 최대 R * C * (K+1)
+	 * - 각 상태에서 4방향 확인
+	 * - 총: O(R * C * K)
 	 */
-	
-	// 맵의 세로와 가로 크기, 부술 수 있는 벽의 수
-	static int r, c, limit;
-	// 방문 처리를 위한 배열. 벽을 부순 횟수별 방문 처리를 비트마스킹 처리
-	static int[][] visited;
-	// 맵 정보. 0은 빈 공간, 1은 벽
+
+	static int r, c, k;
 	static boolean[][] map;
+	static int[][] visited; // 벽 부순 횟수별 방문 처리는 비트마스킹으로 대체
 	static int[] dy = {-1, 0, 1, 0}, dx = {0, 1, 0, -1};
-	
-	static class Node {
-		// 현재의 좌표, 이동 거리, 지금까지 벽을 부순 횟수
-		int y, x, cost, breakCnt;
-		
-		public Node(int y, int x, int cost, int breakCnt) {
-			this.y = y;
-			this.x = x;
-			this.cost = cost;
-			this.breakCnt = breakCnt;
-		}
-	}
-	
+
 	static void init() throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		r = Integer.parseInt(st.nextToken());
 		c = Integer.parseInt(st.nextToken());
-		limit = Integer.parseInt(st.nextToken());
-		
-		visited = new int[r][c];
+		k = Integer.parseInt(st.nextToken());
+
 		map = new boolean[r][c];
-		
+		visited = new int[r][c];
 		for(int i=0; i<r; i++) {
 			String line = br.readLine();
 			for(int j=0; j<c; j++) {
@@ -58,63 +59,35 @@ public class Main_14442 {
 			}
 		}
 	}
-	
-	// BFS로 이동 거리와 벽을 부순 횟수를 추적하면서 최단 거리를 구한다.
+
 	static int bfs() {
-		Queue<Node> q = new ArrayDeque<>();
-		// 초기값 : 좌표 (0, 0), 이동 거리 1, 벽을 부순 횟수 0
-		q.add(new Node(0, 0, 1, 0));
-		visited[0][0] |= 1;
+		Queue<int[]> q = new ArrayDeque<>();
+		q.add(new int[]{0, 0, 1, 0});
+		visited[0][0] |= 1; // 벽을 0개 부순 상태로 시작점 방문
+
 		while(!q.isEmpty()) {
-			Node cur = q.poll();
-			
+			int[] cur = q.poll();
+
 			for(int i=0; i<4; i++) {
-				int ny = cur.y + dy[i];
-				int nx = cur.x + dx[i];
-				
-				// 배열 범위 초과 방지
-				if(ny < 0 || nx < 0 || ny >= r || nx >= c) continue;
-				
-				// 도착점에 도달한 경우 총 이동 거리 반환
-				if(ny == r-1 && nx == c-1) return cur.cost+1;
-				
-				/*
-				 * 1. 다음 위치가 벽인 경우 :
-				 * 이미 K번 벽을 부쉈거나, 동일한 파괴 횟수로 이미 방문한 곳이면 무시
-				 * 아니라면 벽 파괴 횟수와 이동 거리 카운트
-				 * 
-				 * 2. 다음 위치가 빈 공간인 경우 :
-				 * 동일한 파괴 횟수로 이미 방문한 곳이면 무시
-				 * 아니라면 이동 거리만 카운트
-				 * */
-				if(map[ny][nx]) {
-					if(cur.breakCnt == limit || (visited[ny][nx] & (1 << cur.breakCnt+1)) != 0) continue;
-					
-					visited[ny][nx] |= (1 << (cur.breakCnt+1));
-					q.add(new Node(ny, nx, cur.cost+1, cur.breakCnt+1));
-				} else {
-					if((visited[ny][nx] & (1 << cur.breakCnt)) != 0) continue;
-					
-					visited[ny][nx] |= (1 << (cur.breakCnt));
-					q.add(new Node(ny, nx, cur.cost+1, cur.breakCnt));
-				}
+				int y = cur[0] + dy[i];
+				int x = cur[1] + dx[i];
+				if(y < 0 || x < 0 || y >= r || x >= c) continue;
+				if(y == r-1 && x == c-1) return cur[2] + 1;
+
+				int breakCnt = cur[3] + (map[y][x] ? 1 : 0);
+				if(breakCnt > k || (visited[y][x] & (1 << breakCnt)) != 0) continue;
+
+				visited[y][x] |= (1 << breakCnt);
+				q.add(new int[]{y, x, cur[2] + 1, breakCnt});
 			}
 		}
-		
-		// 무슨 수를 써도 도착점에 도달하지 못한 경우 -1 반환
+
 		return -1;
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		init();
-		
-		// 시작점 == 도착점인 경우 -> 이동 거리 1로 간주
-		if(r == 1 && c == 1) {
-			System.out.println(1);
-			return;
-		}
-		
-		System.out.println(bfs());
+		System.out.println(r == 1 && c == 1 ? 1 : bfs());
 	}
-	
+
 }
